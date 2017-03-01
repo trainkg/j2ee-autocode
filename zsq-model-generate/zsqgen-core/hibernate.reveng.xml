@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-reverse-engineering SYSTEM
+	"http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+	<type-mapping>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	</type-mapping>
+	<table-filter match-name="jx_nom" match-catalog="jxkh"></table-filter>
+	<table catalog="jxkh" name="jx_nom">
+		<column name="id"></column>
+		<column name="htFileId">
+			<meta attribute="field-description">this is doc info</meta>
+		</column>
+		<column name="htFileName"></column>
+		<column name="nomStatus"></column>
+		<column name="orgL1Name"></column>
+		<column name="orgL2Name"></column>
+		<column name="orgName"></column>
+		<column name="psDate"></column>
+		<column name="q2FinalScore"></column>
+		<column name="q3FinalScore"></column>
+		<column name="q4FinalScore"></column>
+		<column name="submitDate"></column>
+		<column name="submitType"></column>
+		<column name="year"></column>
+		<column name="verifor_id"></column>
+		<column name="target_id"></column>
+		<column name="submit_user_id"></column>
+		<column name="q2score_per"></column>
+		<column name="q3score_per"></column>
+		<column name="q4score_per"></column>
+		<column name="recived"></column>
+	</table>
+</hibernate-reverse-engineering>
