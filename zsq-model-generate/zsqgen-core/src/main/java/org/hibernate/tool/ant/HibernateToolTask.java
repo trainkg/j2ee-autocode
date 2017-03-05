@@ -44,6 +44,7 @@ public class HibernateToolTask extends Task {
 	}
 
 	public ConfigurationTask createConfiguration() {
+		log("createConfiguration");
 		checkConfiguration();
 		configurationTask = new ConfigurationTask();
 		return configurationTask;			
@@ -165,9 +166,6 @@ public class HibernateToolTask extends Task {
 	
 	public void execute() {
 		log("strat excute hibernate tool ant tast...");
-		log("strat excute hibernate tool ant tast...");
-		log("strat excute hibernate tool ant tast...");
-		log("strat excute hibernate tool ant tast...");
 		System.setProperty("file.encoding", "UTF-8");
 		
 		if(configurationTask==null) {
@@ -192,6 +190,7 @@ public class HibernateToolTask extends Task {
 				generatorTask.execute();			
 			}
 		} catch (RuntimeException re) {
+			re.printStackTrace();
 			reportException(re, count, generatorTask);
 		} 
 		finally {
@@ -277,6 +276,9 @@ public class HibernateToolTask extends Task {
 		return null;
 	}
 
+	/**
+	 * 检查是否配置了生成器和做一些简单配置检测
+	 */
 	private void validateParameters() {
 		if(generators.isEmpty()) {
 			throw new BuildException("No exporters specified in <hibernatetool>. There has to be at least one specified. An exporter is e.g. <hbm2java> or <hbmtemplate>. See documentation for details.", getLocation());
@@ -321,7 +323,7 @@ public class HibernateToolTask extends Task {
 
 	public Properties getProperties() {
 		Properties p = new Properties();
-		p.putAll(getConfiguration().getProperties());
+    
 		p.putAll(properties);
 		return p;
 	}

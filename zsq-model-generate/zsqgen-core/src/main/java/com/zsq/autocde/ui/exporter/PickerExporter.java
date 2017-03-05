@@ -43,6 +43,7 @@ public class PickerExporter extends GenericExporter {
 		Iterator<?> iterator = getCfg2JavaTool().getPOJOIterator(getConfiguration().getClassMappings());
 		while ( iterator.hasNext() ) {					
 			POJOClass element = (POJOClass) iterator.next();
+			System.out.println(element);
 		}
 	}
 

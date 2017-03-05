@@ -70,6 +70,7 @@ public class ConfigurationTask extends Task {
 	protected void doConfiguration(Configuration configuration) {	
 		validateParameters();		
 		
+		log("[entityResolver]"+entityResolver);
 		if (entityResolver != null) {
 			try {
 				Class resolver = ReflectHelper.classForName(entityResolver, this.getClass());
@@ -82,6 +83,7 @@ public class ConfigurationTask extends Task {
 				throw new BuildException("Could not create or find " + entityResolver + " class to use for entity resolvement");
 			}			
 		}
+		log("[namingStrategy]"+namingStrategy);
 		if (namingStrategy != null) {
 			try {
 				Class resolver = ReflectHelper.classForName(namingStrategy, this.getClass());
@@ -143,6 +145,7 @@ public class ConfigurationTask extends Task {
 	 * @param files
 	 */
 	private void addMappings(File[] files) {
+		log("[files]"+files.length);
 		for (int i = 0; i < files.length; i++) {
 			File filename = files[i];
 			boolean added = addFile(filename);

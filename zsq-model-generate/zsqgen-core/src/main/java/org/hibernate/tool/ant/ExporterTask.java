@@ -87,6 +87,15 @@ public abstract class ExporterTask {
 	
 	public abstract String getName();
 	
+	
+	/**
+	 * 配置当前任务执行配置文件<br/>
+	 * 加载所有 HibernateToolTask 设定的配置信息,添加自身的配置信息。
+	 * 将所有的配置信息交给和Task绑定的执行器(生成实现)
+	 * 
+	 * @param exporter
+	 * @return
+	 */
 	protected Exporter configureExporter(Exporter exporter) {
 		Properties prop = new Properties();
 		prop.putAll(parent.getProperties());

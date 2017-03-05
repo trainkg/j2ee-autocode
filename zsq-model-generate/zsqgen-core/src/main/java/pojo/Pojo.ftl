@@ -1,6 +1,5 @@
 ${pojo.getPackageDeclaration()}
-// Generated ${date} by Hibernate Tools ${version}
-
+// Generated ${date} by J2EE-AUTOCODE Tools ${version}
 <#assign classbody>
 <#include "PojoTypeDeclaration.ftl"/> {
 

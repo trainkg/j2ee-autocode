@@ -435,8 +435,9 @@ public class JDBCBinder {
 
 		Table collectionTable = foreignKey.getTable();
 
-		Collection collection = new org.hibernate.mapping.List(mappings, rc); // MASTER TODO: allow overriding collection type
-
+		org.hibernate.mapping.List collection = new org.hibernate.mapping.List(mappings, rc); // MASTER TODO: allow overriding collection type
+		 
+		
 		collection.setCollectionTable(collectionTable); // CHILD+
 
 
@@ -472,8 +473,8 @@ public class JDBCBinder {
 
 			element.setReferencedEntityName( tableToClassName );
 			element.addColumn( fk.getColumn( 0 ) );
-			collection.setElement( element );
-
+			collection.setElement(element );
+			collection.setIndex(element);
         } else {
         	String tableToClassName = bindCollection( rc, foreignKey, null, collection );
 
@@ -483,6 +484,7 @@ public class JDBCBinder {
         	mappings.addSecondPass( new JDBCCollectionSecondPass(mappings, collection) );
 
         	collection.setElement(oneToMany);
+        	collection.setIndex(oneToMany);
         }
 		// bind keyvalue
 		KeyValue referencedKeyValue;

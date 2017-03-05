@@ -1,13 +1,11 @@
 package com.zsq.autocde;
 
-import org.hibernate.tool.ant.ExporterTask;
-import org.hibernate.tool.ant.Hbm2HbmXmlExporterTask;
 import org.hibernate.tool.ant.HibernateToolTask;
 
 import com.zsq.autocde.ui.PickerExporterTask;
 
 /**
- * 
+ * 自定义扩展hibernate tools ant 任务列表
  * 
  * 
  * @author peculiar.1@163.com
@@ -16,12 +14,10 @@ import com.zsq.autocde.ui.PickerExporterTask;
 public class HibernateToolAntExtendTask extends HibernateToolTask {
 	
 	
-	public ExporterTask createHbm2HbmXml() {
-        ExporterTask generator= new Hbm2HbmXmlExporterTask(this);
-        addGenerator( generator );
-        return generator;
-    }
-	
+	/**
+	 * 扩展支持模型对应的picker生成设定
+	 * @return
+	 */
 	public PickerExporterTask createModel2Picker(){
 		PickerExporterTask generator= new PickerExporterTask(this);
         addGenerator( generator );

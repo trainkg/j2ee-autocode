@@ -74,6 +74,7 @@ public class JDBCConfigurationTask extends ConfigurationTask {
 			.setDetectManyToMany( detectManyToMany )
 			.setDetectOneToOne( detectOneToOne )
 			.setDetectOptimisticLock( detectOptimisticLock );
+		//qqsettings.setCreateCollectionForForeignKey(false);
 	
 		defaultStrategy.setSettings(qqsettings);
 		strategy.setSettings(qqsettings);

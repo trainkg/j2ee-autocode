@@ -21,6 +21,9 @@ public class GenericExporter extends AbstractExporter {
 		abstract void process(GenericExporter ge);
 	}
 	
+	/**
+	 * 模型处理器允许列表, 这个的模型迭代器的范围需要修改为可以扩展的。
+	 */
 	static Map<String, ModelIterator> modelIterators = new HashMap<String, ModelIterator>();
 	static {
 		modelIterators.put( "configuration", new ModelIterator() {
@@ -73,8 +76,19 @@ public class GenericExporter extends AbstractExporter {
 		});
 	}
 	
+	/**
+	 * 模板名称
+	 */
 	private String templateName;
+	
+	/**
+	 * 文件名称
+	 */
 	private String filePattern;
+	
+	/**
+	 * 模型迭代器处理, 支持 ‘,’ 分割
+	 */
 	private String forEach;
 	
 	public GenericExporter(Configuration cfg, File outputdir) {
@@ -149,13 +163,18 @@ public class GenericExporter extends AbstractExporter {
 		additionalContext.put("pojo", element);
 		additionalContext.put("clazz", element.getDecoratedObject());
 		String filename = resolveFilename( element );
-		log.info("gen file name {0}",filename);
+		log.info("gen file name {}",filename);
 		if(filename.endsWith(".java") && filename.indexOf('$')>=0) {
 			log.warn("Filename for " + getClassNameForFile( element ) + " contains a $. Innerclass generation is not supported.");
 		}
 		producer.produce(additionalContext, getTemplateName(), new File(getOutputDirectory(),filename), templateName, element.toString());
 	}
 
+	/**
+	 * 生成文件名称, 简单的实现, 建议极限修改为Google groovy script表达式。
+	 * @param element
+	 * @return
+	 */
 	protected String resolveFilename(POJOClass element) {
 		String filename = StringHelper.replace(filePattern, "{class-name}", getClassNameForFile( element )); 
 		String packageLocation = StringHelper.replace(getPackageNameForFile( element ),".", "/");

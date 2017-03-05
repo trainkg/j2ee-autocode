@@ -3,616 +3,85 @@
 	"http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
 	<type-mapping>
-		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="string"
+			length="32" not-null="true">
+		</sql-type>
 	</type-mapping>
+	<table-filter match-name="cloudview_param" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="cloudview_sys_param"
+		match-catalog="jxkh">
+	</table-filter>
+	<table-filter match-name="jx_adjust_position_record"
+		match-catalog="jxkh">
+	</table-filter>
+	<table-filter match-name="jx_appraisal_cycle"
+		match-catalog="jxkh">
+	</table-filter>
+	<table-filter match-name="jx_declare_scope" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="jx_delivery_data_history"
+		match-catalog="jxkh">
+	</table-filter>
+	<table-filter match-name="jx_delivery_ps_history"
+		match-catalog="jxkh">
+	</table-filter>
+	<table-filter match-name="jx_delivery_psmaster"
+		match-catalog="jxkh">
+	</table-filter>
 	<table-filter match-name="jx_nom" match-catalog="jxkh"></table-filter>
-	<!-- <table catalog="jxkh" name="jx_nom">
-		<column name="id"></column>
-		<column name="htFileId">
-		<meta attribute="field-description">this is doc info</meta>
-		</column>
-		<column name="htFileName"></column>
-		<column name="nomStatus"></column>
-		<column name="orgL1Name"></column>
-		<column name="orgL2Name"></column>
-		<column name="orgName"></column>
-		<column name="psDate"></column>
-		<column name="q2FinalScore"></column>
-		<column name="q3FinalScore"></column>
-		<column name="q4FinalScore"></column>
-		<column name="submitDate"></column>
-		<column name="submitType"></column>
-		<column name="year"></column>
-		<column name="verifor_id"></column>
-		<column name="target_id"></column>
-		<column name="submit_user_id"></column>
-		<column name="q2score_per"></column>
-		<column name="q3score_per"></column>
-		<column name="q4score_per"></column>
-		<column name="recived"></column>
-		</table> -->
-	<table catalog="jxkh" name="jx_nom_delivery_template_level">
-		<column name="id"></column>
-		<column name="name"></column>
-	</table>
-	<table catalog="jxkh" name="jx_nom_delivery_template">
-		<column name="id"></column>
-		<column name="name"></column>
-		<column name="type"></column>
-		<column name="description"></column>
-		<column name="qz"></column>
-		<column name="standard"></column>
-		<column name="khzq"></column>
-		<column name="totalTarget"></column>
-		<column name="unit"></column>
-		<column name="halfTarget"></column>
-		<column name="q3Target"></column>
-		<column name="lastTarget"></column>
-		<column name="pgType"></column>
-		<column name="rangeUp"></column>
-		<column name="rangeDown"></column>
-		<column name="standardValue"></column>
-		<column name="isSale"></column>
-	</table>
-	<table catalog="jxkh" name="jx_proxy">
-		<column name="id"></column>
-		<column name="pg_proxy_id"></column>
-		<column name="sh_proxy_id"></column>
-		<column name="user_id"></column>
-		<column name="start_date"></column>
-		<column name="disabled_date"></column>
-	</table>
-	<table catalog="jxkh" name="jx_promise">
-		<column name="id"></column>
-		<column name="org_id"></column>
-		<column name="user_id"></column>
-		<column name="promise_temp"></column>
-		<column name="file_name"></column>
-	</table>
-	<table catalog="jxkh" name="jx_nom">
-		<column name="id"></column>
-		<column name="htFileId"></column>
-		<column name="htFileName"></column>
-		<column name="nomStatus"></column>
-		<column name="orgL1Name"></column>
-		<column name="orgL2Name"></column>
-		<column name="orgName"></column>
-		<column name="psDate"></column>
-		<column name="q2FinalScore"></column>
-		<column name="q3FinalScore"></column>
-		<column name="q4FinalScore"></column>
-		<column name="submitDate"></column>
-		<column name="submitType"></column>
-		<column name="year"></column>
-		<column name="verifor_id"></column>
-		<column name="target_id"></column>
-		<column name="submit_user_id"></column>
-		<column name="q2score_per"></column>
-		<column name="q3score_per"></column>
-		<column name="q4score_per"></column>
-		<column name="recived"></column>
-		<column name="m1FinalScore"></column>
-		<column name="m2FinalScore"></column>
-		<column name="m3FinalScore"></column>
-		<column name="m4FinalScore"></column>
-		<column name="m5FinalScore"></column>
-		<column name="m6FinalScore"></column>
-		<column name="m7FinalScore"></column>
-		<column name="m8FinalScore"></column>
-		<column name="m9FinalScore"></column>
-		<column name="m10FinalScore"></column>
-		<column name="m11FinalScore"></column>
-		<column name="m12FinalScore"></column>
-	</table>
-	<table catalog="jxkh" name="jx_nom_delivery_scope">
-		<column name="id"></column>
-		<column name="level_id"></column>
-		<column name="template_id"></column>
-	</table>
-	<table catalog="jxkh" name="jx_realy_data">
-		<column name="id"></column>
-		<column name="dcl"></column>
-		<column name="jxxs"></column>
-		<column name="khsd"></column>
-		<column name="pd"></column>
-		<column name="pdxs"></column>
-		<column name="updateScore"></column>
-		<column name="nom_id"></column>
-	</table>
-	<table catalog="jxkh" name="jx_nom_delivery">
-		<column name="id"></column>
-		<column name="actValue"></column>
-		<column name="dScore"></column>
-		<column name="dScoreFM"></column>
-		<column name="description"></column>
-		<column name="evalFM"></column>
-		<column name="fScore"></column>
-		<column name="fScoreFM"></column>
-		<column name="flCode"></column>
-		<column name="halfTarget"></column>
-		<column name="khzq"></column>
-		<column name="lastTarget"></column>
-		<column name="name"></column>
-		<column name="needExec"></column>
-		<column name="needUpload"></column>
-		<column name="pgType"></column>
-		<column name="q2FinalScore"></column>
-		<column name="q3FinalScore"></column>
-		<column name="q3Target"></column>
-		<column name="q4FinalScore"></column>
-		<column name="q2PgValue"></column>
-		<column name="q3PgValue"></column>
-		<column name="q4PgValue"></column>
-		<column name="qz"></column>
-		<column name="rangeDown"></column>
-		<column name="rangeUp"></column>
-		<column name="standard"></column>
-		<column name="standardValue"></column>
-		<column name="status"></column>
-		<column name="t1"></column>
-		<column name="t2"></column>
-		<column name="t3"></column>
-		<column name="t4"></column>
-		<column name="totalTarget"></column>
-		<column name="type"></column>
-		<column name="unit"></column>
-		<column name="create_id"></column>
-		<column name="nom_id"></column>
-		<column name="upload_id"></column>
-		<column name="currentState"></column>
-		<column name="joinkhzq"></column>
-		<column name="adjustPositionRecord_id"></column>
-		<column name="isSale"></column>
-		<column name="processNomDelivery"></column>
-		<column name="process_nom_type"></column>
-		<column name="deleteed"></column>
-		<column name="m1FinalScore"></column>
-		<column name="m2FinalScore"></column>
-		<column name="m3FinalScore"></column>
-		<column name="m4FinalScore"></column>
-		<column name="m5FinalScore"></column>
-		<column name="m6FinalScore"></column>
-		<column name="m7FinalScore"></column>
-		<column name="m8FinalScore"></column>
-		<column name="m9FinalScore"></column>
-		<column name="m10FinalScore"></column>
-		<column name="m11FinalScore"></column>
-		<column name="m12FinalScore"></column>
-		<column name="khType"></column>
-		<column name="khMonth"></column>
-		<column name="m1Target"></column>
-		<column name="m2Target"></column>
-		<column name="m3Target"></column>
-		<column name="m4Target"></column>
-		<column name="m5Target"></column>
-		<column name="m6Target"></column>
-		<column name="m7Target"></column>
-		<column name="m8Target"></column>
-		<column name="m9Target"></column>
-		<column name="m10Target"></column>
-		<column name="m11Target"></column>
-		<column name="m12Target"></column>
-		<column name="m1PgValue"></column>
-		<column name="m2PgValue"></column>
-		<column name="m3PgValue"></column>
-		<column name="m4PgValue"></column>
-		<column name="m5PgValue"></column>
-		<column name="m6PgValue"></column>
-		<column name="m7PgValue"></column>
-		<column name="m8PgValue"></column>
-		<column name="m9PgValue"></column>
-		<column name="m10PgValue"></column>
-		<column name="m11PgValue"></column>
-		<column name="m12PgValue"></column>
-	</table>
-	<table catalog="jxkh" name="msg_template">
-		<column name="id"></column>
-		<column name="content"></column>
-		<column name="type"></column>
-	</table>
-	<table catalog="jxkh" name="org_organization">
-		<column name="id"></column>
-		<column name="comment"></column>
-		<column name="createtime"></column>
-		<column name="dept_admin"></column>
-		<column name="level"></column>
-		<column name="org_code"></column>
-		<column name="org_key"></column>
-		<column name="org_name"></column>
-		<column name="org_status"></column>
-		<column name="org_type"></column>
-		<column name="parent_id"></column>
-		<column name="path"></column>
-		<column name="sort_order"></column>
-	</table>
-	<table catalog="jxkh" name="cloudview_sys_param">
-		<column name="id"></column>
-		<column name="coc_status"></column>
-		<column name="cvm_status"></column>
-	</table>
-	<table catalog="jxkh" name="jx_delivery_data_history">
-		<column name="id"></column>
-		<column name="completeValue"></column>
-		<column name="pszq"></column>
-		<column name="delivery_id"></column>
-		<column name="user_id"></column>
-		<column name="proxy_user_id"></column>
-	</table>
-	<table catalog="jxkh" name="jx_declare_scope">
-		<column name="id"></column>
-		<column name="scopeType"></column>
-		<column name="org_id"></column>
-		<column name="user_id"></column>
-	</table>
-	<table catalog="jxkh" name="msg_captcha">
-		<column name="id"></column>
-		<column name="captcha"></column>
-		<column name="captcha_type"></column>
-		<column name="create_time"></column>
-		<column name="user_id"></column>
-	</table>
-	<table catalog="jxkh" name="jx_adjust_position_record">
-		<column name="id"></column>
-		<column name="adjuster_id"></column>
-		<column name="adjustTime"></column>
-		<column name="operater_id"></column>
-		<column name="oldPositionIsSale"></column>
-		<column name="newPositionIsSale"></column>
-		<column name="year"></column>
-		<column name="khSeason"></column>
-		<column name="beforeAdjustPercent"></column>
-		<column name="afterAdjustPercent"></column>
-		<column name="createNewNomDelivery"></column>
-		<column name="adjustStatus"></column>
-		<column name="dataSource"></column>
-		<column name="beforeHRScope"></column>
-		<column name="afterHRScope"></column>
-	</table>
-	<table catalog="jxkh" name="jx_sys_config">
-		<column name="id"></column>
-		<column name="curKhzq"></column>
-		<column name="searchStatus"></column>
-		<column name="writeStatus"></column>
-		<column name="year"></column>
-		<column name="email"></column>
-		<column name="curMonthzq"></column>
-	</table>
-	<table catalog="jxkh" name="jx_delivery_psmaster">
-		<column name="id"></column>
-		<column name="delivery_id"></column>
-		<column name="user_id"></column>
-		<column name="weight"></column>
-	</table>
-	<table catalog="jxkh" name="jx_template_scope">
-		<column name="id"></column>
-		<column name="tid"></column>
-		<column name="orgId"></column>
-		<column name="userId"></column>
-	</table>
-	<table catalog="jxkh" name="org_org_user">
-		<column name="id"></column>
-		<column name="org_id"></column>
-		<column name="relation_status"></column>
-		<column name="user_id"></column>
-	</table>
-	<table catalog="jxkh" name="org_resource">
-		<column name="id"></column>
-		<column name="create_time"></column>
-		<column name="icon_uri"></column>
-		<column name="parent_id"></column>
-		<column name="resource_genre"></column>
-		<column name="resource_name"></column>
-		<column name="resource_status"></column>
-		<column name="resource_type"></column>
-		<column name="sort_order"></column>
-		<column name="url"></column>
-	</table>
-	<table catalog="jxkh" name="role_permission">
-		<column name="id"></column>
-		<column name="perm_id"></column>
-		<column name="rol_id"></column>
-	</table>
-	<table catalog="jxkh" name="log_business">
-		<column name="id"></column>
-		<column name="business_type_aid"></column>
-		<column name="operation_type_aid"></column>
-		<column name="operation_result"></column>
-		<column name="description"></column>
-		<column name="operator"></column>
-		<column name="operator_date"></column>
-		<column name="duration"></column>
-		<column name="ip"></column>
-		<column name="level"></column>
-		<column name="dy_content"></column>
-		<column name="model_name"></column>
-		<column name="operator_id"></column>
-		<column name="resource_name"></column>
-		<column name="type"></column>
-	</table>
-	<table catalog="jxkh" name="msg_noticehistory">
-		<column name="id"></column>
-		<column name="draft_flag"></column>
-		<column name="notice_content"></column>
-		<column name="notice_id"></column>
-		<column name="notice_subject"></column>
-		<column name="notice_type"></column>
-		<column name="sender_id"></column>
-	</table>
-	<table catalog="jxkh" name="jx_org_nom_detail">
-		<column name="id"></column>
-		<column name="pdefined"></column>
-		<column name="jxdefined"></column>
-		<column name="departId"></column>
-		<column name="kdefined"></column>
-		<column name="refDefined"></column>
-		<column name="selfDefined"></column>
-		<column name="reDefined"></column>
-		<column name="finalCheck"></column>
-		<column name="detailModify"></column>
-		<column name="finalVeriforId"></column>
-		<column name="jxkhbDesc"></column>
-		<column name="per_verify"></column>
-		<column name="seasonPer"></column>
-		<column name="monthPer"></column>
-	</table>
-	<table catalog="jxkh" name="jx_template">
-		<column name="id"></column>
-		<column name="name"></column>
-		<column name="source"></column>
-		<column name="type"></column>
-	</table>
-	<table catalog="jxkh" name="org_operate">
-		<column name="id"></column>
-		<column name="create_time"></column>
-		<column name="operate_code"></column>
-		<column name="operate_name"></column>
-		<column name="operate_status"></column>
-		<column name="operate_type"></column>
-		<column name="resource_id"></column>
-		<column name="sort_order"></column>
-		<column name="url"></column>
-	</table>
-	<table catalog="jxkh" name="jx_delivery_ps_history">
-		<column name="id"></column>
-		<column name="pszq"></column>
-		<column name="score"></column>
-		<column name="delivery_id"></column>
-		<column name="user_id"></column>
-		<column name="proxy_user_id"></column>
-	</table>
-	<table catalog="jxkh" name="org_resource_org">
-		<column name="id"></column>
-		<column name="org_id"></column>
-		<column name="resource_id"></column>
-		<column name="relation_status"></column>
-	</table>
-	<table catalog="jxkh" name="org_role_user">
-		<column name="id"></column>
-		<column name="relation_status"></column>
-		<column name="role_id"></column>
-		<column name="account_id"></column>
-	</table>
-	<table catalog="jxkh" name="org_operate_role">
-		<column name="id"></column>
-		<column name="operate_id"></column>
-		<column name="relation_status"></column>
-		<column name="role_id"></column>
-	</table>
-	<table catalog="jxkh" name="org_source_org">
-		<column name="id"></column>
-		<column name="org_id"></column>
-		<column name="properties_url"></column>
-		<column name="relation_status"></column>
-		<column name="source_id"></column>
-	</table>
-	<table catalog="jxkh" name="org_role">
-		<column name="id"></column>
-		<column name="can_del"></column>
-		<column name="comment"></column>
-		<column name="create_time"></column>
-		<column name="isdelete"></column>
-		<column name="org_id"></column>
-		<column name="role_code"></column>
-		<column name="role_key"></column>
-		<column name="role_name"></column>
-		<column name="role_type"></column>
-		<column name="sort_order"></column>
-	</table>
-	<table catalog="jxkh" name="org_user">
-		<column name="id"></column>
-		<column name="activation_time"></column>
-		<column name="application_time"></column>
-		<column name="credit_level"></column>
-		<column name="device_id"></column>
-		<column name="email"></column>
-		<column name="first_login_time"></column>
-		<column name="is_system"></column>
-		<column name="last_login_time"></column>
-		<column name="login_name"></column>
-		<column name="login_times"></column>
-		<column name="mobile"></column>
-		<column name="password"></column>
-		<column name="portrait"></column>
-		<column name="security_tag"></column>
-		<column name="sort_order"></column>
-		<column name="source_id"></column>
-		<column name="spell"></column>
-		<column name="user_level"></column>
-		<column name="user_source"></column>
-		<column name="user_status"></column>
-		<column name="user_type"></column>
-		<column name="login_error"></column>
-		<column name="sap_sync_status"></column>
-		<column name="sap_sync_date"></column>
-	</table>
-	<table catalog="jxkh" name="msg_lettersendinfo">
-		<column name="id"></column>
-		<column name="del_flag"></column>
-		<column name="letter_id"></column>
-		<column name="letter_receiver_id"></column>
-		<column name="letter_sender"></column>
-		<column name="letter_sender_id"></column>
-		<column name="read_flag"></column>
-	</table>
-	<table catalog="jxkh" name="msg_messages">
-		<column name="id"></column>
-		<column name="msg_type"></column>
-		<column name="send_time"></column>
-		<column name="sender_id"></column>
-		<column name="sender_name"></column>
-	</table>
-	<table catalog="jxkh" name="jx_nom_verify_history">
-		<column name="id"></column>
-		<column name="status"></column>
-		<column name="tips"></column>
-		<column name="vUserName"></column>
-		<column name="vdate"></column>
-		<column name="nom_verify_id"></column>
-		<column name="proxy_user_id"></column>
-	</table>
-	<table catalog="jxkh" name="org_role_group">
-		<column name="id"></column>
-		<column name="group_id"></column>
-		<column name="relation_status"></column>
-		<column name="role_id"></column>
-	</table>
-	<table catalog="jxkh" name="org_group_user">
-		<column name="id"></column>
-		<column name="group_id"></column>
-		<column name="relation_status"></column>
-		<column name="user_id"></column>
-	</table>
-	<table catalog="jxkh" name="msg_letterhistory">
-		<column name="letter_id"></column>
-		<column name="letter_content"></column>
-		<column name="letter_receiver_address"></column>
-		<column name="letter_receiver_ids"></column>
-		<column name="letter_subject"></column>
-		<column name="send_time"></column>
-	</table>
-	<table catalog="jxkh" name="jx_appraisal_cycle">
-		<column name="id"></column>
-		<column name="dataEndTime"></column>
-		<column name="name"></column>
-		<column name="per"></column>
-		<column name="psEndTime"></column>
-	</table>
-	<table catalog="jxkh" name="cloudview_param">
-		<column name="id"></column>
-		<column name="key_"></column>
-		<column name="status"></column>
-	</table>
-	<table catalog="jxkh" name="permission">
-		<column name="id"></column>
-		<column name="name"></column>
-		<column name="ukey"></column>
-	</table>
-	<table catalog="jxkh" name="msg_mailhistory">
-		<column name="mail_id"></column>
-		<column name="bcc"></column>
-		<column name="cc"></column>
-		<column name="mail_content"></column>
-		<column name="mail_subject"></column>
-		<column name="receivers"></column>
-		<column name="receivers_id"></column>
-	</table>
-	<table catalog="jxkh" name="org_check_source">
-		<column name="id"></column>
-		<column name="encryption_type"></column>
-		<column name="name"></column>
-		<column name="source_status"></column>
-		<column name="url"></column>
-	</table>
-	<table catalog="jxkh" name="org_user_detail">
-		<column name="id"></column>
-		<column name="address"></column>
-		<column name="birthday_time"></column>
-		<column name="corporate_name"></column>
-		<column name="fax"></column>
-		<column name="id_card"></column>
-		<column name="nickname"></column>
-		<column name="phone"></column>
-		<column name="position"></column>
-		<column name="reserveA"></column>
-		<column name="reserveB"></column>
-		<column name="reserveC"></column>
-		<column name="reserveD"></column>
-		<column name="reserveE"></column>
-		<column name="sex"></column>
-		<column name="trade"></column>
-		<column name="user_id"></column>
-		<column name="user_name"></column>
-	</table>
-	<table catalog="jxkh" name="msg_smshistory">
-		<column name="sms_id"></column>
-		<column name="receiver_phone"></column>
-		<column name="sms_content"></column>
-	</table>
-	<table catalog="jxkh" name="jx_nom_verify">
-		<column name="id"></column>
-		<column name="level"></column>
-		<column name="status"></column>
-		<column name="tips"></column>
-		<column name="vdate"></column>
-		<column name="nom_id"></column>
-		<column name="user_id"></column>
-	</table>
-	<table catalog="jxkh" name="log_business_type">
-		<column name="id"></column>
-		<column name="name"></column>
-		<column name="description"></column>
-		<column name="tableName"></column>
-		<column name="catalog"></column>
-	</table>
-	<table catalog="jxkh" name="org_group">
-		<column name="id"></column>
-		<column name="comment"></column>
-		<column name="create_time"></column>
-		<column name="group_code"></column>
-		<column name="group_name"></column>
-		<column name="group_status"></column>
-		<column name="org_id"></column>
-	</table>
-	<table catalog="jxkh" name="org_reg_message">
-		<column name="id"></column>
-		<column name="address"></column>
-		<column name="comment"></column>
-		<column name="fax"></column>
-		<column name="isapproval"></column>
-		<column name="legal"></column>
-		<column name="license"></column>
-		<column name="linkman"></column>
-		<column name="location"></column>
-		<column name="org_fullname"></column>
-		<column name="org_id"></column>
-		<column name="org_range"></column>
-		<column name="org_type"></column>
-		<column name="phone"></column>
-		<column name="property"></column>
-		<column name="scale"></column>
-		<column name="tax_code"></column>
-		<column name="trade"></column>
-		<column name="url"></column>
-		<column name="zipcode"></column>
-	</table>
-	<table catalog="jxkh" name="log_operation_type">
-		<column name="id"></column>
-		<column name="name"></column>
-		<column name="description"></column>
-	</table>
-	<table catalog="jxkh" name="msg_msgconfig">
-		<column name="id"></column>
-		<column name="mail_encoding"></column>
-		<column name="mail_password"></column>
-		<column name="mail_smtp_address"></column>
-		<column name="mail_user_address"></column>
-		<column name="overdueOf_check_mail"></column>
-		<column name="overdueOf_check_sms"></column>
-	</table>
-	<table catalog="jxkh" name="org_resource_role">
-		<column name="id"></column>
-		<column name="relation_status"></column>
-		<column name="resource_id"></column>
-		<column name="role_id"></column>
-	</table>
+	<table-filter match-name="jx_nom_delivery" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="jx_nom_delivery_scope"
+		match-catalog="jxkh">
+	</table-filter>
+	<table-filter match-name="jx_nom_delivery_template"
+		match-catalog="jxkh">
+	</table-filter>
+	<table-filter match-name="jx_nom_delivery_template_level"
+		match-catalog="jxkh">
+	</table-filter>
+	<table-filter match-name="jx_nom_verify" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="jx_nom_verify_history"
+		match-catalog="jxkh">
+	</table-filter>
+	<table-filter match-name="jx_org_nom_detail" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="jx_promise" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="jx_proxy" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="jx_realy_data" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="jx_sys_config" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="jx_template" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="jx_template_scope" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="log_business" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="log_business_type" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="log_operation_type"
+		match-catalog="jxkh">
+	</table-filter>
+	<table-filter match-name="msg_captcha" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="msg_letterhistory" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="msg_lettersendinfo"
+		match-catalog="jxkh">
+	</table-filter>
+	<table-filter match-name="msg_mailhistory" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="msg_messages" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="msg_msgconfig" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="msg_noticehistory" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="msg_smshistory" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="msg_template" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_check_source" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_group" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_group_user" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_operate" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_operate_role" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_org_user" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_organization" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_reg_message" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_resource" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_resource_org" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_resource_role" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_role" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_role_group" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_role_user" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_source_org" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_user" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="org_user_detail" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="permission" match-catalog="jxkh"></table-filter>
+	<table-filter match-name="role_permission" match-catalog="jxkh"></table-filter>
 </hibernate-reverse-engineering>

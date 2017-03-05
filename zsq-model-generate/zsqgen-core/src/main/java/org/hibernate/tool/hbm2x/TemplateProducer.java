@@ -28,11 +28,10 @@ public class TemplateProducer {
 		this.ac = ac;
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			Writer w =  new BufferedWriter(new OutputStreamWriter(new FileOutputStream("D://11.xml"), "UTF-8"));
 			try {
-				w.write("我是一个中国人");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -51,7 +50,7 @@ public class TemplateProducer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-	}
+	}*/
 	
 	public void produce(Map<String,Object> additionalContext, String templateName, File destination, String identifier, String fileType, String rootContext) {
 		

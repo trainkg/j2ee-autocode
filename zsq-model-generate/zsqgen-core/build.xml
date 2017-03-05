@@ -10,20 +10,22 @@
 		<echo message="plugin classpath:  ${plugin_classpath}"/>
 	</target>
 
-	<taskdef name="hibernatetools" classname="com.zsq.autocde.HibernateToolAntExtendTask" classpath="${compile_classpath}">
-	</taskdef>
+	 <taskdef name="hibernatetools" classname="com.zsq.autocde.HibernateToolAntExtendTask" classpath="${compile_classpath}">
+	</taskdef> 
+		
+	<!-- <taskdef name="hibernatetools" classname="org.hibernate.tool.ant.HibernateToolTask" classpath="${compile_classpath}"></taskdef> -->
 	
 	<!-- generate files -->
 	<target name="gen" depends="init">
 		<hibernatetools>
-			<jdbcconfiguration packageName="com.zsq.test.model" configurationfile="${config}/hibernate.cfg.xml" revengfile="${basedir}/hibernate.reveng.xml" detectmanytomany="true">
+			<jdbcconfiguration packageName="com.zsq.test.model" configurationfile="${config}/hibernate.cfg.xml" revengfile="${basedir}/hibernate.reveng.xml" detectmanytomany="true" detectOneToOne="true" detectOptimisticLock="true">
 			</jdbcconfiguration>
 
 			<!-- <hbm2ddl destdir="${WEB-INF}\${dbschema}" export="true"  console="true"   
                         create="true" update="true" drop="true"   outputfilename="dbschema.sql" /> -->
-			<!-- <hbm2hbmxml destdir="${javasrc}"/> -->
-			<!-- <hbm2java jdk5="true" destdir="${javasrc}" /> -->
-			<model2Picker destdir="${javasrc}/ui/picker"></model2Picker>
+			<hbm2hbmxml destdir="${javasrc}"/>
+			<hbm2java jdk5="true" destdir="${javasrc}"  />
+			<!-- <model2Picker destdir="${javasrc}/ui/picker"></model2Picker> -->
 		</hibernatetools>
 	</target>
 </project>
