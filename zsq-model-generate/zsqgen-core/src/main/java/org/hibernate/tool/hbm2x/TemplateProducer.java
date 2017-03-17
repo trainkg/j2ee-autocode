@@ -2,12 +2,10 @@ package org.hibernate.tool.hbm2x;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Iterator;
 import java.util.Map;
@@ -17,6 +15,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+/**
+ * 
+ * 
+ * 
+ * @author peculiar.1@163.com
+ * @version $ID: TemplateProducer.java, V1.0.0 2017年3月17日 下午9:07:58 $
+ */
 public class TemplateProducer {
 
 	private static final Logger log = LoggerFactory.getLogger(TemplateProducer.class);
@@ -28,30 +33,15 @@ public class TemplateProducer {
 		this.ac = ac;
 	}
 	
-	/*public static void main(String[] args) {
-		try {
-			Writer w =  new BufferedWriter(new OutputStreamWriter(new FileOutputStream("D://11.xml"), "UTF-8"));
-			try {
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				w.flush();
-				w.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}*/
-	
+	/**
+	 * 
+	 * @param additionalContext
+	 * @param templateName
+	 * @param destination
+	 * @param identifier  只是一个标志信息
+	 * @param fileType
+	 * @param rootContext
+	 */
 	public void produce(Map<String,Object> additionalContext, String templateName, File destination, String identifier, String fileType, String rootContext) {
 		
 		String tempResult = produceToString( additionalContext, templateName, rootContext );
@@ -86,6 +76,13 @@ public class TemplateProducer {
 	}
 
 
+	/**
+	 * 使用freemarker生成最终的页面数据
+	 * @param additionalContext
+	 * @param templateName
+	 * @param rootContext
+	 * @return
+	 */
 	private String produceToString(Map<String,Object> additionalContext, String templateName, String rootContext) {
 		Map<String,Object> contextForFirstPass = additionalContext;
 		putInContext( th, contextForFirstPass );		
@@ -118,7 +115,13 @@ public class TemplateProducer {
 			templateHelper.putInContext((String) element.getKey(), element.getValue());
 		}
 	}
-
+	
+	/**
+	 * @param additionalContext 额外的参数控制
+	 * @param templateName 模板名称
+	 * @param outputFile   文件输出路径
+	 * @param identifier
+	 */
 	public void produce(Map<String,Object> additionalContext, String templateName, File outputFile, String identifier) {
 		String fileType = outputFile.getName();
 		fileType = fileType.substring(fileType.indexOf('.')+1);

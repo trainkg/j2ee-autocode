@@ -244,12 +244,13 @@ public class TemplateHelper {
     	return model;
     }
     
-    /** look up the template named templateName via the paths and print the content to the output */
+    /**
+     * look up the template named templateName via the paths and print the content to the output
+     */
     public void processTemplate(String templateName, Writer output, String rootContext) {
     	if(rootContext == null) {
     		rootContext = "Unknown context";
     	}
-    	
     	try {
     		Template template = freeMarkerEngine.getTemplate(templateName);
     		template.setEncoding("UTF-8");

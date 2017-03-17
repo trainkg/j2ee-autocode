@@ -111,7 +111,9 @@ public class GenericExporter extends AbstractExporter {
 		this.forEach = foreach;
 	}
 	
-	
+	/**
+	 * 执行任务生成
+	 */
 	protected void doStart() {
 				
 		if(filePattern==null) {

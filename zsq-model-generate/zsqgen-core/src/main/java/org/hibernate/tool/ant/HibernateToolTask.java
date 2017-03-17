@@ -23,7 +23,7 @@ import org.hibernate.internal.util.StringHelper;
 
 /**
  * @author max
- *
+ * 
  */
 public class HibernateToolTask extends Task {
 
