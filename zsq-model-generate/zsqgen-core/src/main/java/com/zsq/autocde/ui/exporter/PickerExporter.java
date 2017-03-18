@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.tool.hbm2x.GenericExporter;
 import org.hibernate.tool.hbm2x.TemplateProducer;
@@ -22,12 +25,54 @@ import org.hibernate.tool.hbm2x.pojo.POJOClass;
  * 在以往的客户中，很多是内部系统，一些数据的安全性得不到重视，但是在未来的云平台趋势下面，数据安全性会被放大出来
  * 可能一个数据安全性问题会让广大群众对你失去使用信息，所以我们在使用最新的前端技术的时候，尽量考虑这些问题，不要让权限处理交给前端来处理。
  * </p> 
- * <br>
+ * <p>
  * <b>我的策略是不能将这部分复杂的和系统紧密联系的内容引进到模板阶段，可以结合服务后端引擎来解决权限部分问题，尤其一些权限控制框架，标签是不可能引身到前端的。</b>
- * 
+ * </p>
+ * 在picker的常规组成中包含以下内容
+ * <ul>
+ * <li>模板资源(html/JPS/freemarker 或者其他资源)</li>
+ * <li>css资源</li>
+ * <li>JavaScript资源</li>
+ * </ul>
+ * <strong>picker使用的服务资源我们采取在其他的exporter提供</strong>
  * @author Administrator
  */
 public class PickerExporter extends GenericExporter {
+	
+	/**
+	 * 在设计中PICKER信息有一些静态资源以及一些模板(可能是动态的组合完成)
+	 * 静态文件大致包含(css/javascript) <br>
+	 * 总体文件分布
+	 * <pre>
+	 * {pickName}|
+	 * 	 -- cssFile
+	 * 	 -- javascriptFile
+	 * </pre>
+	 */
+	@Setter
+	private File staticdir;
+	
+	
+	/**
+	 * 在常规情况下，css可能有整体框架管理,并不是必须的, 只有当css模板设定时候，才会生成相应的css文件。
+	 */
+	@Getter
+	@Setter
+	private String cssTemplate;
+	
+	@Getter
+	@Setter
+	private String jsTemplate;
+	
+	@Getter
+	@Setter
+	private String encoding;
+	
+	@Override
+	public void start() {
+		loadPickerSettings();
+		super.start();
+	}
 	
 	/**
 	 * 读取配置文件
@@ -35,8 +80,9 @@ public class PickerExporter extends GenericExporter {
 	protected void setupContext() {
 		String fileSuffix = getFileSuffix();
 		if(StringUtils.isBlank(fileSuffix)){
-			setFileSuffix("html");
+			setFileSuffix("html"); //default
 		}
+		getTemplateHelper().putInContext("encoding", getEncoding());
 		super.setupContext();
 	}
 	
@@ -45,7 +91,6 @@ public class PickerExporter extends GenericExporter {
 	 */
 	@Override
 	protected void doStart() {
-		loadPickerSettings();
 		Iterator<?> iterator = getCfg2JavaTool().getPOJOIterator(getConfiguration().getClassMappings());
 		while ( iterator.hasNext() ) {					
 			POJOClass element = (POJOClass) iterator.next();
@@ -54,19 +99,52 @@ public class PickerExporter extends GenericExporter {
 			additionalContext.put("pojo", element);
 			additionalContext.put("clazz", element.getDecoratedObject());
 			String filename = resolveFilename( element);
-			log.info("[PICKER] file name {}",filename);
-			producer.produce(additionalContext, getTemplateName(), new File(getOutputDirectory(),filename), element.toString());			
+			log.info("[picker] file name {}",filename);
+			//生成对应的模板文件
+			producer.produce(additionalContext, getTemplateName(), new File(getOutputDirectory(),filename), element.toString());
+			//生成对应静态资源
+			//css
+			if(StringUtils.isNotBlank(getCssTemplate())){
+				producer.produce(additionalContext, getCssTemplate(), new File(getStaticdir(),resolveCssFileName(element)), element.toString());	
+			}
+			//javascript
+			producer.produce(additionalContext, getJsTemplate(), new File(getStaticdir(),resolveJsFileName(element)), element.toString());
 		}
+	}
+
+	private String resolveCssFileName(POJOClass element) {
+		String className = getClassNameForFile(element);
+		return className.toLowerCase()+".css";
+	}
+
+	private String resolveJsFileName(POJOClass element) {
+		String className = getClassNameForFile(element);
+		return className.toLowerCase()+".js";
 	}
 
 	/**
 	 * 加载picker配置
 	 */
 	private void loadPickerSettings() {
-		setTemplateName("com/zsq/autocde/ui/exporter/picker.ftl");
+		if(StringUtils.isBlank(getJsTemplate())){
+			setJsTemplate("com/zsq/autocde/ui/exporter/pickerJs.ftl");
+		}
+		if(StringUtils.isBlank(getTemplateName())){
+			setTemplateName("com/zsq/autocde/ui/exporter/picker.ftl");	
+		}
+		if(StringUtils.isBlank(getEncoding())){
+			setEncoding("UTF-8");
+		}
 		log.info("load fileSuffix info is {}",getFileSuffix());
-		setFilePattern("{package-name}/{class-name}."+getFileSuffix());
+		setFilePattern("{class-name}."+getFileSuffix());
 	}
 
+	public File getStaticdir() {
+		if(staticdir != null){
+			return staticdir;	
+		}else{
+			return getOutputDirectory();
+		}
+	}
 
 }

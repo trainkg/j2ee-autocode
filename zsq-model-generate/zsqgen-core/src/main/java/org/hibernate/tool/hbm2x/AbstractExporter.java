@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Properties;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.internal.util.ReflectHelper;
 import org.hibernate.internal.util.StringHelper;
@@ -147,6 +148,7 @@ public abstract class AbstractExporter implements Exporter {
 					+ getOutputDirectory() + " path: "
 					+ toString(templatePaths));
 		}
+		log.info("template paths {}", StringUtils.join(templatePaths));
 		getTemplateHelper().init(getOutputDirectory(), templatePaths);
 	}
 

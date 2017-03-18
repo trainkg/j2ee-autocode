@@ -1,5 +1,10 @@
 package com.zsq.autocde.ui;
 
+import java.io.File;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import org.hibernate.tool.ant.ExporterTask;
 import org.hibernate.tool.ant.HibernateToolTask;
 import org.hibernate.tool.hbm2x.Exporter;
@@ -30,7 +35,21 @@ import com.zsq.autocde.ui.exporter.PickerExporter;
  */
 public class PickerExporterTask extends ExporterTask {
 
+	@Getter
+	@Setter
 	private String fileSuffix;
+	
+	@Getter
+	@Setter
+	private File staticdir;
+	
+	@Getter
+	@Setter
+	private String cssTemplate;
+	
+	@Getter
+	@Setter
+	private String jsTemplate;
 
 	public PickerExporterTask(HibernateToolTask parent) {
 		super(parent);
@@ -42,21 +61,26 @@ public class PickerExporterTask extends ExporterTask {
 	@Override
 	protected Exporter createExporter() {
 		PickerExporter exporter =  new PickerExporter();
-		exporter.setFileSuffix(getFileSuffix());
+		return exporter;
+	}
+	
+	/**
+	 * 先创建再配置
+	 */
+	@Override
+	protected Exporter configureExporter(Exporter exporter) {
+		PickerExporter picExporter = (PickerExporter) exporter;
+		picExporter.setFileSuffix(getFileSuffix());
+		picExporter.setStaticdir(getStaticdir());
+		picExporter.setCssTemplate(getCssTemplate());
+		picExporter.setJsTemplate(getJsTemplate());
+		super.configureExporter(exporter);
 		return exporter;
 	}
 
 	@Override
 	public String getName() {
 		return "com.zsq generate model picker info.";
-	}
-
-	public String getFileSuffix() {
-		return fileSuffix;
-	}
-
-	public void setFileSuffix(String fileSuffix) {
-		this.fileSuffix = fileSuffix;
 	}
 
 }

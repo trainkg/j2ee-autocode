@@ -7,81 +7,18 @@
 			length="32" not-null="true">
 		</sql-type>
 	</type-mapping>
-	<table-filter match-name="cloudview_param" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="cloudview_sys_param"
-		match-catalog="jxkh">
+	
+	<table-filter match-name="org_user" match-catalog="jxkh">
+		<!-- 全局参数 -->
+		<meta attribute="aa">123</meta>
+		<meta attribute="bb">312</meta>
 	</table-filter>
-	<table-filter match-name="jx_adjust_position_record"
-		match-catalog="jxkh">
-	</table-filter>
-	<table-filter match-name="jx_appraisal_cycle"
-		match-catalog="jxkh">
-	</table-filter>
-	<table-filter match-name="jx_declare_scope" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="jx_delivery_data_history"
-		match-catalog="jxkh">
-	</table-filter>
-	<table-filter match-name="jx_delivery_ps_history"
-		match-catalog="jxkh">
-	</table-filter>
-	<table-filter match-name="jx_delivery_psmaster"
-		match-catalog="jxkh">
-	</table-filter>
-	<table-filter match-name="jx_nom" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="jx_nom_delivery" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="jx_nom_delivery_scope"
-		match-catalog="jxkh">
-	</table-filter>
-	<table-filter match-name="jx_nom_delivery_template"
-		match-catalog="jxkh">
-	</table-filter>
-	<table-filter match-name="jx_nom_delivery_template_level"
-		match-catalog="jxkh">
-	</table-filter>
-	<table-filter match-name="jx_nom_verify" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="jx_nom_verify_history"
-		match-catalog="jxkh">
-	</table-filter>
-	<table-filter match-name="jx_org_nom_detail" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="jx_promise" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="jx_proxy" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="jx_realy_data" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="jx_sys_config" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="jx_template" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="jx_template_scope" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="log_business" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="log_business_type" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="log_operation_type"
-		match-catalog="jxkh">
-	</table-filter>
-	<table-filter match-name="msg_captcha" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="msg_letterhistory" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="msg_lettersendinfo"
-		match-catalog="jxkh">
-	</table-filter>
-	<table-filter match-name="msg_mailhistory" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="msg_messages" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="msg_msgconfig" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="msg_noticehistory" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="msg_smshistory" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="msg_template" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_check_source" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_group" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_group_user" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_operate" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_operate_role" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_org_user" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_organization" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_reg_message" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_resource" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_resource_org" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_resource_role" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_role" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_role_group" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_role_user" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_source_org" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_user" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="org_user_detail" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="permission" match-catalog="jxkh"></table-filter>
-	<table-filter match-name="role_permission" match-catalog="jxkh"></table-filter>
+	<table catalog="jxkh" name="org_user">
+		<column name="email">
+			<meta attribute="picker">true</meta>
+		</column>
+		<column name="user_level">
+			<meta attribute="picker">true</meta>
+		</column>
+	</table>
 </hibernate-reverse-engineering>

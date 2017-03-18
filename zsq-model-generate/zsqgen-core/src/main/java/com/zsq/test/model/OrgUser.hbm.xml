@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-18 18:46:11 by Hibernate Tools 4.3.5.Final -->
+<hibernate-mapping>
+    <class name="com.zsq.test.model.OrgUser" table="org_user" catalog="jxkh" optimistic-lock="version">
+        <meta attribute="aa" inherit="false">123</meta>
+        <meta attribute="bb" inherit="false">312</meta>
+        <id name="id" type="string">
+            <column name="id" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="activationTime" type="timestamp">
+            <column name="activation_time" length="19" />
+        </property>
+        <property name="applicationTime" type="timestamp">
+            <column name="application_time" length="19" />
+        </property>
+        <property name="creditLevel" type="java.lang.Integer">
+            <column name="credit_level" />
+        </property>
+        <property name="deviceId" type="string">
+            <column name="device_id" length="20" />
+        </property>
+        <property name="email" type="string">
+            <meta attribute="picker" inherit="false">true</meta>
+            <column name="email" length="100" />
+        </property>
+        <property name="firstLoginTime" type="timestamp">
+            <column name="first_login_time" length="19" />
+        </property>
+        <property name="isSystem" type="java.lang.Boolean">
+            <column name="is_system" />
+        </property>
+        <property name="lastLoginTime" type="timestamp">
+            <column name="last_login_time" length="19" />
+        </property>
+        <property name="loginName" type="string">
+            <column name="login_name" length="50" not-null="true" />
+        </property>
+        <property name="loginTimes" type="java.lang.Integer">
+            <column name="login_times" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="20" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="100" />
+        </property>
+        <property name="portrait" type="string">
+            <column name="portrait" length="200" />
+        </property>
+        <property name="securityTag" type="java.lang.Integer">
+            <column name="security_tag" />
+        </property>
+        <property name="sortOrder" type="java.lang.Integer">
+            <column name="sort_order" />
+        </property>
+        <property name="sourceId" type="string">
+            <column name="source_id" length="32" />
+        </property>
+        <property name="spell" type="string">
+            <column name="spell" />
+        </property>
+        <property name="userLevel" type="java.lang.Integer">
+            <meta attribute="picker" inherit="false">true</meta>
+            <column name="user_level" />
+        </property>
+        <property name="userSource" type="java.lang.Integer">
+            <column name="user_source" />
+        </property>
+        <property name="userStatus" type="int">
+            <column name="user_status" not-null="true" />
+        </property>
+        <property name="userType" type="int">
+            <column name="user_type" not-null="true" />
+        </property>
+        <property name="loginError" type="java.lang.Integer">
+            <column name="login_error" />
+        </property>
+        <property name="sapSyncStatus" type="int">
+            <column name="sap_sync_status" not-null="true" />
+        </property>
+        <property name="sapSyncDate" type="date">
+            <column name="sap_sync_date" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

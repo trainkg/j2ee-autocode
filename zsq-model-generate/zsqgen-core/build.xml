@@ -23,9 +23,9 @@
 
 			<!-- <hbm2ddl destdir="${WEB-INF}\${dbschema}" export="true"  console="true"   
                         create="true" update="true" drop="true"   outputfilename="dbschema.sql" /> -->
-			<!-- <hbm2hbmxml destdir="${javasrc}"/>
-			<hbm2java jdk5="true" destdir="${javasrc}"  /> -->
-			<model2Picker fileSuffix="jsp" destdir="${javasrc}/ui/picker"></model2Picker>
+			<hbm2hbmxml destdir="${javasrc}"/>
+			<hbm2java jdk5="true" destdir="${javasrc}"  />
+			<model2Picker fileSuffix="jsp" staticdir="D:/zsqworkspace/zsq/com.zsq/zsq.custpl/src/main/webapp/jsapp/picker" propPath="${basedir}/task.properties" destdir="D:/zsqworkspace/zsq/com.zsq/zsq.custpl/src/main/webapp/WEB-INF/picker"></model2Picker>
 		</hibernatetools>
 	</target>
 </project>

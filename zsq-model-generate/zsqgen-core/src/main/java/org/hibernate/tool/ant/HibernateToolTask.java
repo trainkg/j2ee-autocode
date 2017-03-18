@@ -10,6 +10,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.apache.tools.ant.AntClassLoader;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
@@ -35,6 +38,7 @@ public class HibernateToolTask extends Task {
 	private List<ExporterTask> generators = new ArrayList<ExporterTask>();
 	private Path classPath;
 	private Path templatePath;
+	@Setter
 	private Properties properties = new Properties(); 	
 	
 	private void checkConfiguration() {

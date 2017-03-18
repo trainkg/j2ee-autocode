@@ -194,7 +194,6 @@ public class TemplateHelper {
 	    try {
 	    	Reader r = new StringReader(template);
 			Template t = new Template("unknown", r, freeMarkerEngine);
-		    
 			t.process(getContext(), output);           
 	    } 
 	    catch (IOException e) {
@@ -254,7 +253,8 @@ public class TemplateHelper {
     	try {
     		Template template = freeMarkerEngine.getTemplate(templateName);
     		template.setEncoding("UTF-8");
-    		template.process(getContext(), output);            
+			SimpleHash context = getContext(); 
+    		template.process(context, output);            
         } 
         catch (IOException e) {
             throw new ExporterException("Error while processing " + rootContext + " with template " + templateName, e);

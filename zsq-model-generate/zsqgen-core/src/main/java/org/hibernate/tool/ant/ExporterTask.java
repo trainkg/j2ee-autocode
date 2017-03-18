@@ -5,8 +5,10 @@
 package org.hibernate.tool.ant;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.Properties;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.types.Environment;
 import org.apache.tools.ant.types.Path;
@@ -23,7 +25,9 @@ public abstract class ExporterTask {
 
 	// refactor out so not dependent on Ant ?
 	protected HibernateToolTask parent;
+	
 	Properties properties;
+	private String propPath; 
 	File destdir;
 	private Path templatePath;
 	
@@ -91,8 +95,8 @@ public abstract class ExporterTask {
 	/**
 	 * 配置当前任务执行配置文件<br/>
 	 * 加载所有 HibernateToolTask 设定的配置信息,添加自身的配置信息。
-	 * 将所有的配置信息交给和Task绑定的执行器(生成实现)
-	 * 
+	 * 将所有的配置信息交给和Task绑定的执行器(生成实现) <br>
+	 * 将TASK级别的配置信息交给exporter。
 	 * @param exporter
 	 * @return
 	 */
@@ -106,4 +110,19 @@ public abstract class ExporterTask {
 		exporter.setTemplatePath( getTemplatePath().list() );			
 		return exporter;
 	}
+
+	public void setPropPath(String propPath) {
+		this.propPath = propPath;
+		
+		if(StringUtils.isNotBlank(propPath)){
+			this.properties = new Properties();
+			try {
+				properties.load(new FileInputStream(propPath));
+			} catch (Exception e) {
+				throw new BuildException("load properties "+propPath+" file failed",e);
+			}
+		}
+	}
+	
+	
 }
