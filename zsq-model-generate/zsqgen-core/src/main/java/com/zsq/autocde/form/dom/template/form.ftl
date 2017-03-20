@@ -1,4 +1,12 @@
 <!-- Generated ${date} by zsq tools -->
-<p>
-	this is  test info ${pojo.getDeclarationName()}
-</p>
+<div class="row">
+	<div class="fm-item row-span-2">
+		123
+	</div>
+	<div class="fm-item row-span-2">
+		123
+	</div>
+	<div class="fm-item row-span-2">
+		123
+	</div>
+</div>

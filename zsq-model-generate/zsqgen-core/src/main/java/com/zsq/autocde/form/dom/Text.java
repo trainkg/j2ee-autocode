@@ -1,5 +1,7 @@
 package com.zsq.autocde.form.dom;
 
+import javax.xml.bind.annotation.XmlAttribute;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +15,7 @@ public class Text extends GenericInput {
 	/**
 	 * text 输入框最大长度
 	 */
+	@XmlAttribute
 	private String maxLength;
 
 	@Override

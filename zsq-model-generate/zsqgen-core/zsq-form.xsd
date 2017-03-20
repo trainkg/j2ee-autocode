@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="form" type="form"/>
+
+  <xs:element name="radio" type="radio"/>
+
+  <xs:complexType name="form">
+    <xs:complexContent>
+      <xs:extension base="genericDom">
+        <xs:sequence>
+          <xs:element name="sections" type="section" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="genericDom" abstract="true">
+    <xs:sequence>
+      <xs:element name="props">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="key" minOccurs="0" type="xs:string"/>
+                  <xs:element name="value" minOccurs="0" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="template" type="xs:string"/>
+    <xs:attribute name="clazz" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="section">
+    <xs:complexContent>
+      <xs:extension base="genericDom">
+        <xs:sequence>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="select" type="select"/>
+            <xs:element ref="radio"/>
+            <xs:element name="checkboxList" type="checkboxList"/>
+            <xs:element name="radioList" type="radioList"/>
+            <xs:element name="text" type="text"/>
+            <xs:element name="textarea" type="textArea"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="select">
+    <xs:complexContent>
+      <xs:extension base="genericInput">
+        <xs:sequence>
+          <xs:element name="options" type="options" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="genericInput" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="genericDom">
+        <xs:sequence/>
+        <xs:attribute name="validate" type="xs:string"/>
+        <xs:attribute name="label" type="xs:string"/>
+        <xs:attribute name="convertClass" type="xs:string"/>
+        <xs:attribute name="jsConvert" type="xs:string"/>
+        <xs:attribute name="jsFormatter" type="xs:string"/>
+        <xs:attribute name="defValue" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="value" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="options">
+    <xs:sequence>
+      <xs:element name="text" type="xs:string" minOccurs="0"/>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="radio">
+    <xs:complexContent>
+      <xs:extension base="genericInput">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="checkboxList">
+    <xs:complexContent>
+      <xs:extension base="genericInput">
+        <xs:sequence>
+          <xs:element name="checkboxs" type="checkbox" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="checkbox">
+    <xs:complexContent>
+      <xs:extension base="genericInput">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="radioList">
+    <xs:complexContent>
+      <xs:extension base="genericInput">
+        <xs:sequence>
+          <xs:element name="radios" type="radio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="text">
+    <xs:complexContent>
+      <xs:extension base="genericInput">
+        <xs:sequence/>
+        <xs:attribute name="maxLength" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="textArea">
+    <xs:complexContent>
+      <xs:extension base="genericInput">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
+

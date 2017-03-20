@@ -1,6 +1,10 @@
 package com.zsq.autocde.ui.exporter;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -12,6 +16,8 @@ import org.apache.commons.lang.StringUtils;
 import org.hibernate.tool.hbm2x.GenericExporter;
 import org.hibernate.tool.hbm2x.TemplateProducer;
 import org.hibernate.tool.hbm2x.pojo.POJOClass;
+
+import com.zsq.autocde.form.FormGenerator;
 
 /**
  * 模型选择器生成方案
@@ -68,6 +74,13 @@ public class PickerExporter extends GenericExporter {
 	@Setter
 	private String encoding;
 	
+	/**
+	 * picker 相关配置文件存放路径
+	 */
+	@Getter
+	@Setter
+	private String pickerCfgDir; 
+	
 	@Override
 	public void start() {
 		loadPickerSettings();
@@ -91,6 +104,7 @@ public class PickerExporter extends GenericExporter {
 	 */
 	@Override
 	protected void doStart() {
+		log.info("[PICK] picker config dir is {}",getPickerCfgDir());
 		Iterator<?> iterator = getCfg2JavaTool().getPOJOIterator(getConfiguration().getClassMappings());
 		while ( iterator.hasNext() ) {					
 			POJOClass element = (POJOClass) iterator.next();
@@ -98,8 +112,23 @@ public class PickerExporter extends GenericExporter {
 			TemplateProducer producer = new TemplateProducer(getTemplateHelper(), getArtifactCollector());
 			additionalContext.put("pojo", element);
 			additionalContext.put("clazz", element.getDecoratedObject());
+			additionalContext.put("pickerCfgDir", getPickerCfgDir());
 			String filename = resolveFilename( element);
-			log.info("[picker] file name {}",filename);
+			log.info("[PICK] file name {}",filename);
+			
+			FormGenerator formGenerator = new FormGenerator();
+			InputStream isConfig = resolveConfigInputStream(element);
+			if (isConfig == null) {
+				log.info("[PICK] not fount {} picker config file, it will skip.",element.getDeclarationName());
+				continue;
+			}
+			formGenerator.loadFormConfig(isConfig);
+			additionalContext.put("form", formGenerator);
+			try {
+				isConfig.close();
+			} catch (IOException e) {
+			}
+			
 			//生成对应的模板文件
 			producer.produce(additionalContext, getTemplateName(), new File(getOutputDirectory(),filename), element.toString());
 			//生成对应静态资源
@@ -110,6 +139,26 @@ public class PickerExporter extends GenericExporter {
 			//javascript
 			producer.produce(additionalContext, getJsTemplate(), new File(getStaticdir(),resolveJsFileName(element)), element.toString());
 		}
+	}
+	
+	/**
+	 * 在picker 配置目录中找去相应的picker配置文件信息
+	 * @param element
+	 * @return
+	 */
+	private InputStream resolveConfigInputStream(POJOClass element) {
+		if(getPickerCfgDir() != null){
+			String modalName =  element.getDeclarationName();
+			File configFile = new File(getPickerCfgDir(), modalName+".xml");
+			if(configFile.exists() && configFile.isFile()){
+				try {
+					return new FileInputStream(configFile);
+				} catch (FileNotFoundException e) {
+					return null;
+				}
+			}
+		}
+		return null;
 	}
 
 	private String resolveCssFileName(POJOClass element) {
@@ -127,10 +176,10 @@ public class PickerExporter extends GenericExporter {
 	 */
 	private void loadPickerSettings() {
 		if(StringUtils.isBlank(getJsTemplate())){
-			setJsTemplate("com/zsq/autocde/ui/exporter/pickerJs.ftl");
+			setJsTemplate("com/zsq/autocde/form/dom/template/pickerJs.ftl");
 		}
 		if(StringUtils.isBlank(getTemplateName())){
-			setTemplateName("com/zsq/autocde/ui/exporter/picker.ftl");	
+			setTemplateName("com/zsq/autocde/form/dom/template/picker.ftl");	
 		}
 		if(StringUtils.isBlank(getEncoding())){
 			setEncoding("UTF-8");

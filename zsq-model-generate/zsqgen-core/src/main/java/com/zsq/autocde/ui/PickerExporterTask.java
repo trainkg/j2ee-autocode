@@ -50,6 +50,10 @@ public class PickerExporterTask extends ExporterTask {
 	@Getter
 	@Setter
 	private String jsTemplate;
+	
+	@Getter
+	@Setter
+	private String pickerCfgDir; 
 
 	public PickerExporterTask(HibernateToolTask parent) {
 		super(parent);
@@ -74,6 +78,7 @@ public class PickerExporterTask extends ExporterTask {
 		picExporter.setStaticdir(getStaticdir());
 		picExporter.setCssTemplate(getCssTemplate());
 		picExporter.setJsTemplate(getJsTemplate());
+		picExporter.setPickerCfgDir(getPickerCfgDir());
 		super.configureExporter(exporter);
 		return exporter;
 	}

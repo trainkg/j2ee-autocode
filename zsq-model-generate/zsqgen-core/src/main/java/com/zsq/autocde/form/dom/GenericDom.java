@@ -3,6 +3,10 @@ package com.zsq.autocde.form.dom;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,18 +17,22 @@ import org.apache.commons.lang.StringUtils;
  */
 @Getter
 @Setter
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class GenericDom  implements Dom {
 	/**
 	 * 页面ID
 	 */
+	@XmlAttribute
 	private String id;
 	/**
 	 * 用户可以指定自己模板,系统采用freemarker作为模板引擎 
 	 */
+	@XmlAttribute
 	private String template;
 	/**
 	 * 当我们扩展累一个元素类型的时候，在配置中，我们如果读取不到对应的配置信息 那么我们就会读取配置中的clazz信息
 	 */
+	@XmlAttribute
 	private String clazz;
 	
 	/**
