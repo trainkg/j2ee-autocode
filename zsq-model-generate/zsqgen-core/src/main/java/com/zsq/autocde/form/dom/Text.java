@@ -20,6 +20,6 @@ public class Text extends GenericInput {
 
 	@Override
 	String getDefaultTemplate() {
-		return "com/zsq/autocde/form/dom/template/text.ftl";
+		return "/com/zsq/autocde/form/dom/template/text.ftl";
 	}
 }

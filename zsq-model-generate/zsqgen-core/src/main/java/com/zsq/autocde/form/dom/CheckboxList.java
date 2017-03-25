@@ -22,6 +22,6 @@ public class CheckboxList extends GenericInput implements IFormInputType<Checkbo
 
 	@Override
 	String getDefaultTemplate() {
-		return "com/zsq/autocde/form/dom/template/checkbox-list.ftl";
+		return "/com/zsq/autocde/form/dom/template/checkbox-list.ftl";
 	}
 }

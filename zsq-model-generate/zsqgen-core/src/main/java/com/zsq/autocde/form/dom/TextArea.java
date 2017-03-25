@@ -7,6 +7,6 @@ public class TextArea extends GenericInput {
 
 	@Override
 	String getDefaultTemplate() {
-		return "com/zsq/autocde/form/dom/template/textarea.ftl";
+		return "/com/zsq/autocde/form/dom/template/textarea.ftl";
 	}
 }

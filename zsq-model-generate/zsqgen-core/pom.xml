@@ -181,6 +181,11 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>2.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.3.0</version>
+		</dependency>
 	</dependencies>
 
 	<!-- <profiles> <profile> <id>jdk-1.7</id> <activation> <activeByDefault>true</activeByDefault> 

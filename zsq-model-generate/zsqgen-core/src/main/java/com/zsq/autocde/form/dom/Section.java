@@ -39,7 +39,7 @@ public class Section extends GenericDom {
 
 	@Override
 	String getDefaultTemplate() {
-		return "com/zsq/autocde/form/dom/template/section.ftl";
+		return "/com/zsq/autocde/form/dom/template/section.ftl";
 	}
 
 }

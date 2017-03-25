@@ -36,7 +36,7 @@ public class Form extends GenericDom implements IFormInputType<Form> {
 	
 	@Override
 	String getDefaultTemplate() {
-		return "com/zsq/autocde/form/dom/template/form.ftl";
+		return "/com/zsq/autocde/form/dom/template/form.ftl";
 	}
 	
 	

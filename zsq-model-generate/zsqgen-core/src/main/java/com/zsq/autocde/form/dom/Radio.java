@@ -11,6 +11,6 @@ public class Radio extends GenericInput{
 
 	@Override
 	String getDefaultTemplate() {
-		return "com/zsq/autocde/form/dom/template/radio.ftl";
+		return "/com/zsq/autocde/form/dom/template/radio.ftl";
 	}
 }

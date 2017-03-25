@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../zsq-form.xsd">
-	<sections>
+	<sections title="测试信息">
 		<text name="3123"></text>
 	</sections>
 </form>

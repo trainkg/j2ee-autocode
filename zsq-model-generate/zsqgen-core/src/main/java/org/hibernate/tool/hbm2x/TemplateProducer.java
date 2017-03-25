@@ -43,36 +43,47 @@ public class TemplateProducer {
 	 * @param rootContext
 	 */
 	public void produce(Map<String,Object> additionalContext, String templateName, File destination, String identifier, String fileType, String rootContext) {
-		
-		String tempResult = produceToString( additionalContext, templateName, rootContext );
-		
-		if(tempResult.trim().length()==0) {
-			log.warn("Generated output is empty. Skipped creation for file " + destination);
-			return;
-		}
-		//FileWriter fileWriter = null;
-		Writer fileWriter = null;
-		try {
-			th.ensureExistence( destination );    
-			ac.addFile(destination, fileType);
-			log.debug("Writing " + identifier + " to " + destination.getAbsolutePath() );
-			fileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(destination), "UTF-8"));
-            fileWriter.write(tempResult);			
-		} 
-		catch (Exception e) {
-		    throw new ExporterException("Error while writing result to file", e);	
-		} finally {
-			if(fileWriter!=null) {
-				try {
-					fileWriter.flush();
-					fileWriter.close();
-				}
-				catch (IOException e) {
-					log.warn("Exception while flushing/closing " + destination,e);
-				}				
+		produce(additionalContext, templateName, destination, identifier, fileType, rootContext, false);
+	}
+	
+	public void produce(Map<String,Object> additionalContext, String templateName, File destination, String identifier, String fileType, String rootContext, boolean prettyxml) {
+			
+			String tempResult = produceToString( additionalContext, templateName, rootContext );
+			if(tempResult.trim().length()==0) {
+				log.warn("Generated output is empty. Skipped creation for file " + destination);
+				return;
 			}
-		}
-		
+			//FileWriter fileWriter = null;
+			Writer fileWriter = null;
+			
+			try {
+				th.ensureExistence( destination );    
+				ac.addFile(destination, fileType);
+				log.debug("Writing " + identifier + " to " + destination.getAbsolutePath() );
+				fileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(destination), "UTF-8"));
+	            fileWriter.write(tempResult);			
+			} 
+			catch (Exception e) {
+			    throw new ExporterException("Error while writing result to file", e);	
+			} finally {
+				if(fileWriter!=null) {
+					try {
+						fileWriter.flush();
+						fileWriter.close();
+					}
+					catch (IOException e) {
+						log.warn("Exception while flushing/closing " + destination,e);
+					}				
+				}
+			}
+			
+			if(prettyxml){
+				try {
+					XMLPrettyPrinter.prettyPrintFile(XMLPrettyPrinter.getDefaultTidy(), destination, destination, true);
+				} catch (Exception e) {
+					log.warn("format {} failed.", templateName);
+				}
+			}
 	}
 
 
@@ -132,5 +143,11 @@ public class TemplateProducer {
 		String fileType = outputFile.getName();
 		fileType = fileType.substring(fileType.indexOf('.')+1);
 		produce(additionalContext, templateName, outputFile, identifier, fileType, rootContext);
+	}	
+	
+	public void produce(Map<String,Object> additionalContext, String templateName, File outputFile, String identifier, boolean prettyxml) {
+		String fileType = outputFile.getName();
+		fileType = fileType.substring(fileType.indexOf('.')+1);
+		produce(additionalContext, templateName, outputFile, identifier, fileType, null, prettyxml);
 	}	
 }

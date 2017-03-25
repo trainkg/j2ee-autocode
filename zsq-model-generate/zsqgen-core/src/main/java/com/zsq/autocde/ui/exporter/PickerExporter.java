@@ -81,6 +81,7 @@ public class PickerExporter extends GenericExporter {
 	@Setter
 	private String pickerCfgDir; 
 	
+	
 	@Override
 	public void start() {
 		loadPickerSettings();
@@ -111,8 +112,8 @@ public class PickerExporter extends GenericExporter {
 			Map<String, Object> additionalContext = new HashMap<String, Object>();
 			TemplateProducer producer = new TemplateProducer(getTemplateHelper(), getArtifactCollector());
 			additionalContext.put("pojo", element);
-			additionalContext.put("clazz", element.getDecoratedObject());
 			additionalContext.put("pickerCfgDir", getPickerCfgDir());
+			additionalContext.put("clazz", element.getDecoratedObject());
 			String filename = resolveFilename( element);
 			log.info("[PICK] file name {}",filename);
 			
@@ -128,9 +129,9 @@ public class PickerExporter extends GenericExporter {
 				isConfig.close();
 			} catch (IOException e) {
 			}
-			
+			additionalContext.put("pickerModel", new PickerFormConfig(formGenerator,element,element.getDecoratedObject()));
 			//生成对应的模板文件
-			producer.produce(additionalContext, getTemplateName(), new File(getOutputDirectory(),filename), element.toString());
+			producer.produce(additionalContext, getTemplateName(), new File(getOutputDirectory(),filename), element.toString(), true);
 			//生成对应静态资源
 			//css
 			if(StringUtils.isNotBlank(getCssTemplate())){

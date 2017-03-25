@@ -19,7 +19,7 @@ public class Select extends GenericInput{
 	
 	@Override
 	String getDefaultTemplate() {
-		return "com/zsq/autocde/form/dom/template/select.ftl";
+		return "/com/zsq/autocde/form/dom/template/select.ftl";
 	}
 
 	public Select(String label) {

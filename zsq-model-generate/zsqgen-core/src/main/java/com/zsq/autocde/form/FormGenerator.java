@@ -30,10 +30,11 @@ public class FormGenerator {
 		try {
 			JAXBContext context = JAXBContext.newInstance(Form.class);
 			Form form = (Form) context.createUnmarshaller().unmarshal(is);
+			this.configForm = form;
 			return form;
 		} catch (Exception e) {
 			throw new BuildException(e);
-		} 
+		}
 	}
 
 }
